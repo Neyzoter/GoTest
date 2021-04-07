@@ -1,7 +1,7 @@
-package main
+package github
 
 import (
-	json2 "encoding/json"
+	"encoding/json"
 	"fmt"
 	"net/http"
 	"net/url"
@@ -45,7 +45,7 @@ func SearchIssues(terms []string) (*IssuesSearchResult, error) {
 		return nil, fmt.Errorf("search query failed: %s", resp.Status)
 	}
 	var result IssuesSearchResult
-	err = json2.NewDecoder(resp.Body).Decode(&result)
+	err = json.NewDecoder(resp.Body).Decode(&result)
 
 	if err != nil {
 		resp.Body.Close()

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"./github"
 	"html/template"
 	"log"
 	"os"
@@ -26,7 +27,7 @@ var report = template.Must(template.New("issuelist").
 
 // 运行方法：./text repo:golang/go is:open json decoder
 func main() {
-	result, err := SearchIssues(os.Args[1:])
+	result, err := github.SearchIssues(os.Args[1:])
 	if err != nil {
 		log.Fatal(err)
 	}
