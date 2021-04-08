@@ -7,7 +7,7 @@ import (
 
 func main() {
 
-	listener, err := net.Listen("tcp", "127.0.0.1:8000")
+	listener, err := net.Listen("tcp", "0.0.0.0:8000")
 	if err != nil {
 		fmt.Println("err = ", err)
 		return
@@ -46,6 +46,6 @@ func handle(conn net.Conn) {
 		fmt.Printf("[From %v] %d data = %s\n", remoteAddr, num, string(bytes[:num]))
 	}
 	// 如果客户端断开连接，则会推出上面的for循环
-	fmt.Printf("[From %v] Conn Closed\n", remoteAddr)
-	fmt.Printf("          num : %d ; err : %v", num, err)
+	fmt.Printf("[From %v] Conn Closed", remoteAddr)
+	fmt.Printf("\tnum : %d ; err : %v", num, err)
 }
