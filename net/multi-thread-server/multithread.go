@@ -7,7 +7,7 @@ import (
 
 func main() {
 
-	listener, err := net.Listen("tcp", "0.0.0.0:8000")
+	listener, err := net.Listen("tcp", ":8000")
 	if err != nil {
 		fmt.Println("err = ", err)
 		return
