@@ -12,6 +12,6 @@ func main()  {
 	// 正确
 	var _ = is.String()
 	// 错误
-	var _ = IntSet{[]uint64{1}}.String()
+	//var _ = IntSet{[]uint64{1}}.String()
 }
 
