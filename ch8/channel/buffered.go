@@ -8,15 +8,15 @@ import (
 // 单个channel只能被读取一次
 // 不同的goroutine总共只能读取到一次
 func main()  {
-	ch := make(chan int)
-	go readChan(ch)
-	go writeChan(ch)
-	go rangeChan(ch)
+	ch := make(chan int, 3) // buffered
+	go readChan1(ch)
+	go writeChan1(ch)
+	go rangeChan1(ch)
 	time.Sleep(time.Second * 20)
 }
 
 // ch为一个无缓冲的输入channel
-func readChan(ch <-chan int)  {
+func readChan1(ch <-chan int)  {
 	// 只能关闭输出channel，而不能关闭输入channel
 	//close(ch)
 	for i := 1; i < 10; i++ {
@@ -32,7 +32,7 @@ func readChan(ch <-chan int)  {
 }
 
 // ch为一个无缓冲的输出channel
-func writeChan(ch chan<- int)  {
+func writeChan1(ch chan<- int)  {
 	for i := 1; i < 10; i++ {
 		ch <- i
 		// 如果数据未被读取，则会阻塞
@@ -43,7 +43,7 @@ func writeChan(ch chan<- int)  {
 }
 
 // ch为一个无缓冲的输入channel
-func rangeChan(ch <-chan int)  {
+func rangeChan1(ch <-chan int)  {
 	for x := range ch {
 		fmt.Println("range read : ", x)
 	}
